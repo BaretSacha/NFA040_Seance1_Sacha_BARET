@@ -1,52 +1,61 @@
 <!DOCTYPE html>
 <html>
 <head>
-        <meta charset="UTF-8"/>
-        <title>NFA040</title>
-        <style>
-            #animationContainer {
-                width: 100%;
-                height: 100vh;
-                position: relative;
-                background-color: #f0f0f0;
-                overflow: hidden;
-            }
-            #square {
-                width: 50px;
-                height: 50px;
-                background-color: #ff0000;
-                position: absolute;
-                top: 50%;
-                left: 0;
-                transform: translateY(-50%);
-            }
-        </style>
+    <meta charset="UTF-8"/>
+    <title>NFA040</title>
+    <style>
+        #animationContainer {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            background-color: #f0f0f0;
+            overflow: hidden;
+        }
+        #square {
+            width: 50px;
+            height: 50px;
+            background-color: #ff0000;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
 </head>
-        
 <body>
-        <h1> Ceci est mon Site Internet NFA040 ---- </h1>
-        <div id="animationContainer">
-            <div id="square"></div>
-        </div>
+    <h1>Ceci est mon Site Internet NFA040</h1>
+    <div id="animationContainer">
+        <div id="square"></div>
+    </div>
 
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                var square = document.getElementById('square');
-                var containerWidth = document.getElementById('animationContainer').clientWidth;
-                var position = 0;
-                var speed = 2;
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var square = document.getElementById('square');
+            var container = document.getElementById('animationContainer');
+            var containerWidth = container.clientWidth;
+            var containerHeight = container.clientHeight;
+            var positionX = 0;
+            var positionY = 0;
+            var speedX = 2;
+            var speedY = 2;
 
-                function animate() {
-                    position += speed;
-                    if (position > containerWidth - square.clientWidth || position < 0) {
-                        speed = -speed;
-                    }
-                    square.style.left = position + 'px';
-                    requestAnimationFrame(animate);
+            function animate() {
+                positionX += speedX;
+                positionY += speedY;
+
+                if (positionX > containerWidth - square.clientWidth || positionX < 0) {
+                    speedX = -speedX;
+                }
+                if (positionY > containerHeight - square.clientHeight || positionY < 0) {
+                    speedY = -speedY;
                 }
 
-                animate();
-            });
-        </script>
+                square.style.left = positionX + 'px';
+                square.style.top = positionY + 'px';
+                requestAnimationFrame(animate);
+            }
+
+            animate();
+        });
+    </script>
 </body>
 </html>
