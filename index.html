@@ -1,10 +1,52 @@
+<!DOCTYPE html>
 <html>
 <head>
         <meta charset="UTF-8"/>
         <title>NFA040</title>
+        <style>
+            #animationContainer {
+                width: 100%;
+                height: 100vh;
+                position: relative;
+                background-color: #f0f0f0;
+                overflow: hidden;
+            }
+            #square {
+                width: 50px;
+                height: 50px;
+                background-color: #ff0000;
+                position: absolute;
+                top: 50%;
+                left: 0;
+                transform: translateY(-50%);
+            }
+        </style>
 </head>
         
 <body>
         <h1> Ceci est mon Site Internet NFA040 </h1>
+        <div id="animationContainer">
+            <div id="square"></div>
+        </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                var square = document.getElementById('square');
+                var containerWidth = document.getElementById('animationContainer').clientWidth;
+                var position = 0;
+                var speed = 2;
+
+                function animate() {
+                    position += speed;
+                    if (position > containerWidth - square.clientWidth || position < 0) {
+                        speed = -speed;
+                    }
+                    square.style.left = position + 'px';
+                    requestAnimationFrame(animate);
+                }
+
+                animate();
+            });
+        </script>
 </body>
 </html>
